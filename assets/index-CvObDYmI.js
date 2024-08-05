@@ -87,11 +87,11 @@ Error generating stack: `+i.message+`
 /*
 * 一大堆的英文数字好像看着眼花，颜色也不够个性
 * 来搞点不一样的 */
-.token.selector{ color: rgb(133,153,0) }
-.token.property{ color: rgb(187,137,0) }
-.token.punctuation{ color: yellow }
-.token.function{ color: rgb(42,161,152) }
-.token.comment{ color: rgb(177,177,177) }
+.token.selector { color: rgb(133,153,0) }
+.token.property { color: rgb(187,137,0) }
+.token.punctuation { color: yellow }
+.token.function { color: rgb(42,161,152) }
+.token.comment { color: rgb(177,177,177) }
 
 /* 差不多就这样吧，现在开始教你画大心心 */
 
@@ -151,13 +151,13 @@ Error generating stack: `+i.message+`
 
   100% {
     transform: scale(1.65) rotate(45deg);
-    opacity: 0
+    opacity: 0;
   }
 }
 
 .bounce {
-  opacity: 0.2;
   animation: throb 1s infinite linear;
+  opacity: 0.2;
 }
 
 /*
