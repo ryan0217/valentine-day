@@ -82,18 +82,18 @@ Error generating stack: `+i.message+`
 }
 
 /*
-* 来整个边框先，再调整下宽高
 * 你视力咋样，会不会感觉字有点小？
 * 问题不大，我把字体调大点
+* 整个边框，再调整下宽高
 */
 .style-container {
-  border: 1px solid;
   overflow: auto;
+  line-height: 1.5;
+  font-size: ${Fn?"16px":"14px"};
+  border: 1px solid;
   ${Fn?`width: 49%;
   height: 100%;`:`width: 100%;
   height: 49%;`}
-  font-size: ${Fn?"16px":"14px"};
-  line-height: 1.5;
 }
 
 /*
