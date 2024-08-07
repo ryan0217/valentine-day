@@ -51,8 +51,7 @@ Error generating stack: `+i.message+`
 * 你先前问过我，能不能给你写个爱心的代码
 * 我回你的是：以后一定
 * 后面你又问了我一次能不能教你写代码
-* 我当时就想给你个脑瓜嘣儿，我一直都在写这个教程
-* 但是又不好直接告诉你
+* 其实我一直在写的，只是不好直接告诉你
 * 现在直接满足你，学不会的话我弹你810个脑瓜嘣儿
 
 * 先来整点前置工作
@@ -88,11 +87,11 @@ Error generating stack: `+i.message+`
 /*
 * 一大堆的英文数字好像看着眼花，颜色也不够个性
 * 来搞点不一样的 */
-.token.selector { color: rgb(133,153,0) }
-.token.property { color: rgb(187,137,0) }
-.token.punctuation { color: yellow }
-.token.function { color: rgb(42,161,152) }
-.token.comment { color: rgb(177,177,177) }
+.token.selector {color: rgb(133,153,0)}
+.token.property {color: rgb(187,137,0)}
+.token.punctuation {color: yellow}
+.token.function {color: rgb(42,161,152)}
+.token.comment {color: rgb(177,177,177)}
 
 /* 差不多就这样吧，现在开始教你画大心心 */
 
@@ -157,4 +156,4 @@ Error generating stack: `+i.message+`
 * 哦耶耶，大功告成
 * 对了，要不要试试戳戳爱心，可能有惊喜？*/
 `;function lp(){const e=_e.useRef(!1),[t,n]=_e.useState(""),[r,l]=_e.useState(!1),[i,o]=_e.useState(""),[u,c]=_e.useState(!1),[d,w]=_e.useState([]),v=ti&&t!=="2333",g=h=>new Promise(m=>{const y=rp[h];if(!y){m();return}o(E=>E+y),y===`
-`&&console.log(),setTimeout(()=>{g(h+1).then(()=>m())},tp)}),x=()=>{u&&(bd()&&!e.current&&(alert("袁维，七夕快乐！"),e.current=!0),C())},C=()=>{const h=Date.now();w(m=>[...m,{timestamp:h,number:yc}]),setTimeout(()=>{S(h)},np)},S=h=>{w(m=>m.filter(y=>y.timestamp!==h))},T=()=>{l(!0),f(),p()},f=()=>{const h=document.getElementById("dehorsAudio");if(h===null){console.error("Failed to get audio element");return}h.play().catch(m=>{console.error("Failed to play music",m)})},s=async()=>{const h=window.prompt("请输入帅气的密码");let m=!1;if(!h)window.alert("哭唧唧，不猜就不猜，凶什么凶");else if(h!=="2333"){for(m=window.confirm("不对哦，要不要考虑撒个娇？");!m;)m=window.confirm("嘤嘤嘤，撒一个嘛");window.alert("面对面撒娇才行哦~")}n(h||"")},a=()=>{ti?document.title="Emmmm":Fn===0?document.title="嗨呀，今天七夕耶":Fn>0&&(document.title=`七夕已经过去${Fn}天了`)},p=async()=>{await g(0),c(!0)};return _e.useEffect(()=>{ti&&s(),a()},[]),v?b.jsx(ts,{info:`过${-Fn}天再回来看`}):r?b.jsxs("div",{className:"root-container",style:{flexDirection:Tn?"row":"column"},children:[b.jsx(Xd,{code:i}),b.jsx(Yd,{onClick:x}),d.map(h=>b.jsx(Jd,{number:h.number},h.timestamp))]}):b.jsx(ts,{info:"啊，页面卡住了，需要美丽的人摁一下才能好",onClick:T})}const rs=document.getElementById("root");rs&&ni.createRoot(rs).render(b.jsx(lp,{}));
+`&&console.log(),setTimeout(()=>{g(h+1).then(()=>m())},tp)}),x=()=>{u&&(bd()&&!e.current&&(alert("袁维，七夕快乐！"),e.current=!0),C())},C=()=>{const h=Date.now();w(m=>[...m,{timestamp:h,number:yc}]),setTimeout(()=>{S(h)},np)},S=h=>{w(m=>m.filter(y=>y.timestamp!==h))},T=()=>{l(!0),f(),p()},f=()=>{const h=document.getElementById("dehorsAudio");if(h===null){console.error("Failed to get audio element");return}h.play().catch(m=>{console.error("Failed to play music",m)})},s=async()=>{const h=window.prompt("请输入帅气的密码 (4位数字)");let m=!1;if(!h)window.alert("哭唧唧，不猜就不猜，凶什么凶");else if(h!=="2333"){for(m=window.confirm("不对哦，要不要考虑撒个娇？");!m;)m=window.confirm("嘤嘤嘤，撒一个嘛");window.alert("面对面撒娇才行哦~")}n(h||"")},a=()=>{ti?document.title="Emmmm":Fn===0?document.title="嗨呀，今天七夕耶":Fn>0&&(document.title=`七夕已经过去${Fn}天了`)},p=async()=>{await g(0),c(!0)};return _e.useEffect(()=>{ti&&s(),a()},[]),v?b.jsx(ts,{info:`过${-Fn}天再回来看`}):r?b.jsxs("div",{className:"root-container",style:{flexDirection:Tn?"row":"column"},children:[b.jsx(Xd,{code:i}),b.jsx(Yd,{onClick:x}),d.map(h=>b.jsx(Jd,{number:h.number},h.timestamp))]}):b.jsx(ts,{info:"啊，页面卡住了，需要美丽的人摁一下才能好",onClick:T})}const rs=document.getElementById("root");rs&&ni.createRoot(rs).render(b.jsx(lp,{}));
