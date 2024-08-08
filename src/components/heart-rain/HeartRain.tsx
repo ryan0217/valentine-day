@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect } from "react";
 import HeartRainItem from "./HeartRainItem";
 import { randomNumber } from "../../utils/randomNumber";
+import "./index.css";
 
 const HeartRain: React.FC<{ number: number }> = ({ number }) => {
   const [queue, setQueue] = React.useState<ReactNode[]>([]);
@@ -10,9 +11,6 @@ const HeartRain: React.FC<{ number: number }> = ({ number }) => {
       const delay = randomNumber(i * 200, i * 200 + 1000);
       setQueue((prev) => [...prev, <HeartRainItem key={i} delay={delay} />]);
     }
-
-    const container = document.createElement("div");
-    document.body.appendChild(container);
   };
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Prism from "prismjs";
+import "./index.css";
 
 const StyleContainer: React.FC<{ code: string }> = ({ code }) => {
   const ref = React.useRef<HTMLDivElement>(null);

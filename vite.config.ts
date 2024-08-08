@@ -7,12 +7,6 @@ export default defineConfig(({ mode }) => ({
     port: 2333,
   },
   base: mode === "production" ? "/valentine-day/" : "/",
-  build: {
-    rollupOptions: {
-      output: {
-        assetFileNames: "assets/[name].[hash].[ext]",
-      },
-    },
-  },
+  publicDir: "public",
   plugins: [react()],
 }));

@@ -1,17 +1,17 @@
 import React from "react";
-import InterestContainer from "./components/interest-container";
-import HeartContainer from "./components/heart-container";
+import TempPage from "./pages/temp-page";
+import ClickedPage from "./pages/clicked-page";
 import StyleContainer from "./components/style-container";
+import HeartContainer from "./components/heart-container";
 import HeartRain from "./components/heart-rain";
-import { calcValentineOffset, isPC, todayIsValentine } from "./utils";
-
-type HeartRainType = Record<"timestamp" | "number", number>;
+import { HeartRainType } from "./components/heart-container/HeartContainer";
+import { calcValentineOffset, isPC } from "./utils";
 
 const SHOW_STYLE_INTERVAL = 100;
-const HEART_RAIN_NUMBER = 30;
-const HEART_RAIN_DURATION = HEART_RAIN_NUMBER * 200 + 5 * 1000;
 
+const isPrd = import.meta.env.MODE === "production";
 const valentineOffset = calcValentineOffset();
+const isTempForbidden = isPrd && valentineOffset < 0;
 const isPc = isPC();
 
 const STYLE_STRING = `/*
@@ -19,12 +19,10 @@ const STYLE_STRING = `/*
 * 你先前问过我，能不能给你写个爱心的代码
 * 我回你的是：以后一定
 * 后面你又问了我一次能不能教你写代码
-* 我当时就想给你个脑瓜嘣儿，我一直都在写这个教程
-* 但是又不好直接告诉你
+* 其实我一直在写的，只是不好直接告诉你
 * 现在直接满足你，学不会的话我弹你810个脑瓜嘣儿
 
-* 先来整点前置工作
-* 给页面中的所有元素都加上过渡效果
+* 先给页面中的所有元素都加上过渡效果
 * 不然等会儿页面样式会很生硬 */
 * {
   -webkit-transition: all .5s;
@@ -35,13 +33,13 @@ const STYLE_STRING = `/*
 * Emmmm，就是说，这个背景比你还白
 * 不能忍，还是换个颜色好点 */
 .root-container {
-  background-color: darkslategray;
+  background-color: #2f4f4f;
   color: #fff;
 }
 
 /*
 * 你视力咋样，会不会感觉字有点小？
-* 问题不大，我把字体调大点。
+* 问题不大，我把字体调大点
 * 整个边框，再调整下宽高 */
 .style-container {
   overflow: auto;
@@ -60,13 +58,13 @@ const STYLE_STRING = `/*
 /*
 * 一大堆的英文数字好像看着眼花，颜色也不够个性
 * 来搞点不一样的 */
-.token.selector { color: rgb(133,153,0) }
-.token.property { color: rgb(187,137,0) }
-.token.punctuation { color: yellow }
-.token.function { color: rgb(42,161,152) }
-.token.comment { color: rgb(177,177,177) }
+.token.selector {color: #859900}
+.token.property {color: #bb8900}
+.token.punctuation {color: #ffff00}
+.token.function {color: #2aa198}
+.token.comment {color: #b1b1b1}
 
-/* 差不多就这样吧，现在开始教你画大心心 */
+/* 重点来咯，现在开始教你画大心心 */
 
 /* 首先，来一个画板 */
 .heart-container {
@@ -78,10 +76,10 @@ const STYLE_STRING = `/*
       : `width: 100%;
   height: 49%;`
   }
-  background-color: white;
+  background-color: #fff;
 }
 
-/* 然后再画一个方块，当左右心室 */
+/* 然后画个方块，当左右心室 */
 .heart {
   position: absolute;
   top: 50%;
@@ -89,15 +87,16 @@ const STYLE_STRING = `/*
   transform: translate(-50%, -50%) rotate(45deg);
   width: 100px;
   height: 100px;
-  background: #E88D8D;
+  background: #e88d8d;
   border-radius: 20px;
+  cursor: pointer;
 }
 
-/* 来画个左右心房 */
+/* 再来画个左右心房 */
 .heart::before, .heart:after {
   content: '';
   position: absolute;
-  background: #E88D8D;
+  background: #e88d8d;
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -111,7 +110,9 @@ const STYLE_STRING = `/*
   right: -1px;
 }
 
-/* 给心脏赋予Power，一起扑通扑通！ */
+/*
+* 现在大心心是有了，但是它不会动哎
+* 来给心脏施点魔法，赋予它Power吧 */
 @keyframes throb {
   0% {
     transform: translate(-50%, -50%) scale(1) rotate(45deg);
@@ -135,12 +136,13 @@ const STYLE_STRING = `/*
 `;
 
 function App() {
-  const flagRef = React.useRef(false);
-
+  const [password, setPassword] = React.useState("");
   const [hasClickedPage, setHasClickedPage] = React.useState(false);
   const [styleCode, setStyleCode] = React.useState("");
   const [isFinished, setIsFinished] = React.useState(false);
   const [heartRains, setHeartRains] = React.useState<HeartRainType[]>([]);
+
+  const isForbidden = isTempForbidden && password !== "2333";
 
   const gradualShowStyle = (index: number) => {
     return new Promise<void>((resolve) => {
@@ -162,53 +164,15 @@ function App() {
     });
   };
 
-  const handleClickHeart = () => {
-    if (!isFinished) return;
-
-    if (todayIsValentine() && !flagRef.current) {
-      alert("袁维，七夕快乐！");
-      flagRef.current = true;
-    }
-
-    startDroppingHeartRain();
-  };
-
-  const startDroppingHeartRain = () => {
-    const timestamp = Date.now();
-
-    // if (
-    //   !heartRains.length ||
-    //   timestamp - heartRains[heartRains.length - 1].timestamp >
-    //     HEART_RAIN_DURATION / 2
-    // ) {
-    setHeartRains((prev) => [
-      ...prev,
-      {
-        timestamp,
-        number: HEART_RAIN_NUMBER,
-      },
-    ]);
-
-    setTimeout(() => {
-      removeHeartRain(timestamp);
-    }, HEART_RAIN_DURATION);
-    // }
-  };
-
-  const removeHeartRain = (timestamp: number) => {
-    setHeartRains((prev) => {
-      return prev.filter((heartRain) => heartRain.timestamp !== timestamp);
-    });
-  };
-
-  const clickPage = () => {
+  const goToNextStep = () => {
     setHasClickedPage(true);
     playMusic();
-    init();
+    startCourse();
   };
 
   const playMusic = () => {
     const audio = document.getElementById("dehorsAudio") as HTMLAudioElement;
+
     if (audio === null) {
       console.error("Failed to get audio element");
       return;
@@ -219,31 +183,38 @@ function App() {
     });
   };
 
-  const init = async () => {
+  const startCourse = async () => {
     await gradualShowStyle(0);
     setIsFinished(true);
   };
 
-  React.useEffect(() => {
-    if (valentineOffset < 0) {
-      document.title = `距离七夕还有${-valentineOffset}天`;
+  const inputPwd = () => {
+    const pwd = window.prompt("请输入帅气的密码 (4位数字)");
+    setPassword(pwd || "");
+  };
+
+  const resetTitle = () => {
+    if (isTempForbidden) {
+      document.title = "Emmmm";
     } else if (valentineOffset === 0) {
-      document.title = "袁维，七夕快乐！";
+      document.title = "嗨呀，今天七夕耶";
     } else if (valentineOffset > 0) {
-      document.title = `七夕已经过去${valentineOffset}天`;
+      document.title = `七夕已经过去${valentineOffset}天了`;
     }
+  };
+
+  React.useEffect(() => {
+    if (isTempForbidden) {
+      inputPwd();
+    }
+
+    resetTitle();
   }, []);
 
-  if (valentineOffset < 0) {
-    return (
-      <div className="interest-container">
-        <h2 className="interest-info">七夕还有{-valentineOffset}天哦</h2>
-      </div>
-    );
-  }
+  if (isForbidden) return <TempPage />;
 
   return !hasClickedPage ? (
-    <InterestContainer onClick={clickPage} />
+    <ClickedPage isPrd={isPrd} onClick={goToNextStep} />
   ) : (
     <div
       className="root-container"
@@ -251,10 +222,10 @@ function App() {
     >
       <StyleContainer code={styleCode} />
 
-      <HeartContainer onClick={handleClickHeart} />
+      <HeartContainer isFinished={isFinished} setHeartRains={setHeartRains} />
 
-      {heartRains.map((heartRain) => (
-        <HeartRain key={heartRain.timestamp} number={heartRain.number} />
+      {heartRains.map(({ timestamp, number }) => (
+        <HeartRain key={timestamp} number={number} />
       ))}
     </div>
   );

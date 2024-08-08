@@ -2,4 +2,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(<App />);
+const rootEle = document.getElementById("root");
+
+if (rootEle) {
+  ReactDOM.createRoot(rootEle).render(<App />);
+}

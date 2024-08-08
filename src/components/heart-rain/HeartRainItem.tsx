@@ -1,5 +1,6 @@
 import React from "react";
 import { randomNumber } from "../../utils/randomNumber";
+import "./index.css";
 
 const HeartRainItem: React.FC<{ delay: number }> = ({ delay }) => {
   const rainRef = React.useRef<HTMLDivElement | null>(null);
@@ -9,7 +10,7 @@ const HeartRainItem: React.FC<{ delay: number }> = ({ delay }) => {
     startPosition: [`${randomNumber(0, window.innerWidth)}px`, "-30px"],
     endPosition: [
       `${randomNumber(0, window.innerWidth)}px`,
-      `${window.innerHeight + 30}px`,
+      `${window.innerHeight + 50}px`,
     ],
     duration: `${randomNumber(4, 4.5)}s`,
   };
@@ -33,7 +34,7 @@ const HeartRainItem: React.FC<{ delay: number }> = ({ delay }) => {
       style={{
         left: startPosition[0],
         top: startPosition[1],
-        transition: `all ${duration}`,
+        transition: `all ${duration} linear`,
       }}
       ref={rainRef}
     >

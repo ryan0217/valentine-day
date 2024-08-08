@@ -1,0 +1,5 @@
+.fireworks-container {
+  display: block;
+  background-color: #000;
+  background-image: linear-gradient(to bottom, #000, #050b3e);
+}
