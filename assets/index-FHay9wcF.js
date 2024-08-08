@@ -54,8 +54,7 @@ Error generating stack: `+i.message+`
 * 其实我一直在写的，只是不好直接告诉你
 * 现在直接满足你，学不会的话我弹你810个脑瓜嘣儿
 
-* 先来整点前置工作
-* 给页面中的所有元素都加上过渡效果
+* 先给页面中的所有元素都加上过渡效果
 * 不然等会儿页面样式会很生硬 */
 * {
   -webkit-transition: all .5s;
@@ -93,7 +92,7 @@ Error generating stack: `+i.message+`
 .token.function {color: #2aa198}
 .token.comment {color: #b1b1b1}
 
-/* 差不多就这样吧，现在开始教你画大心心 */
+/* 重点来咯，现在开始教你画大心心 */
 
 /* 首先，来一个画板 */
 .heart-container {
@@ -104,7 +103,7 @@ Error generating stack: `+i.message+`
   background-color: #fff;
 }
 
-/* 然后再画一个方块，当左右心室 */
+/* 然后画个方块，当左右心室 */
 .heart {
   position: absolute;
   top: 50%;
@@ -117,7 +116,7 @@ Error generating stack: `+i.message+`
   cursor: pointer;
 }
 
-/* 来画个左右心房 */
+/* 再来画个左右心房 */
 .heart::before, .heart:after {
   content: '';
   position: absolute;
@@ -135,7 +134,9 @@ Error generating stack: `+i.message+`
   right: -1px;
 }
 
-/* 给心脏赋予Power，一起扑通扑通！ */
+/*
+* 现在大心心是有了，但是它不会动哎
+* 来给心脏施点魔法，赋予它Power吧 */
 @keyframes throb {
   0% {
     transform: translate(-50%, -50%) scale(1) rotate(45deg);
