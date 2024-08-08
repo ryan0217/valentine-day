@@ -72,7 +72,7 @@ Error generating stack: `+i.message+`
 
 /*
 * 你视力咋样，会不会感觉字有点小？
-* 问题不大，我把字体调大点。
+* 问题不大，我把字体调大点
 * 整个边框，再调整下宽高 */
 .style-container {
   overflow: auto;
