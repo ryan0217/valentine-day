@@ -15,13 +15,6 @@ const isTempForbidden = isPrd && valentineOffset < 0;
 const isPc = isPC();
 
 const STYLE_STRING = `/*
-* 你现在肯定在用${isPc ? "电脑" : "手机"}，我在你脑壳上装了个监控hhhh
-* 你先前问过我，能不能给你写个爱心的代码
-* 我回你的是：以后一定
-* 后面你又问了我一次能不能教你写代码
-* 其实我一直在写的，只是不好直接告诉你
-* 现在直接满足你，学不会的话我弹你810个脑瓜嘣儿
-
 * 先给页面中的所有元素都加上过渡效果
 * 不然等会儿页面样式会很生硬 */
 * {
@@ -58,11 +51,11 @@ const STYLE_STRING = `/*
 /*
 * 一大堆的英文数字好像看着眼花，颜色也不够个性
 * 来搞点不一样的 */
-.token.selector {color: #859900}
-.token.property {color: #bb8900}
-.token.punctuation {color: #ffff00}
-.token.function {color: #2aa198}
-.token.comment {color: #b1b1b1}
+.token.selector { color: #859900; }
+.token.property { color: #bb8900; }
+.token.punctuation { color: #ffff00; }
+.token.function { color: #2aa198; }
+.token.comment { color: #b1b1b1; }
 
 /* 重点来咯，现在开始教你画大心心 */
 
@@ -87,7 +80,7 @@ const STYLE_STRING = `/*
   transform: translate(-50%, -50%) rotate(45deg);
   width: 100px;
   height: 100px;
-  background: #e88d8d;
+  background-color: #e88d8d;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -96,7 +89,7 @@ const STYLE_STRING = `/*
 .heart::before, .heart:after {
   content: '';
   position: absolute;
-  background: #e88d8d;
+  background-color: #e88d8d;
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -133,6 +126,7 @@ const STYLE_STRING = `/*
 /*
 * 哦耶耶，大功告成
 * 对了，要不要试试戳戳爱心，可能有惊喜？*/
+
 `;
 
 function App() {
@@ -165,6 +159,7 @@ function App() {
   };
 
   const goToNextStep = () => {
+    window.alert("打开音量体验更佳");
     setHasClickedPage(true);
     playMusic();
     startCourse();
@@ -214,7 +209,7 @@ function App() {
   if (isForbidden) return <TempPage />;
 
   return !hasClickedPage ? (
-    <ClickedPage isPrd={isPrd} onClick={goToNextStep} />
+    <ClickedPage onClick={goToNextStep} />
   ) : (
     <div
       className="root-container"
