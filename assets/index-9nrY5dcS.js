@@ -104,7 +104,7 @@ Error generating stack: `+i.message+`
   transform: translate(-50%, -50%) rotate(45deg);
   width: 100px;
   height: 100px;
-  background: #e88d8d;
+  background-color: #e88d8d;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -113,7 +113,7 @@ Error generating stack: `+i.message+`
 .heart::before, .heart:after {
   content: '';
   position: absolute;
-  background: #e88d8d;
+  background-color: #e88d8d;
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -143,7 +143,10 @@ Error generating stack: `+i.message+`
 }
 
 .bounce {
-  animation: throb 1s infinite linear;
+  animation-timing-function: linear;
+  animation-name: throb;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
   opacity: 0.2;
 }
 
