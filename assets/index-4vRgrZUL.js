@@ -143,10 +143,10 @@ Error generating stack: `+i.message+`
 }
 
 .bounce {
-  animation-timing-function: linear;
-  animation-name: throb;
   animation-duration: 1s;
+  animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-name: throb;
   opacity: 0.2;
 }
 
