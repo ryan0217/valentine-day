@@ -79,11 +79,11 @@ Error generating stack: `+i.message+`
 /*
 * 一大堆的英文数字好像看着眼花，颜色也不够个性
 * 来搞点不一样的 */
-.token.selector {color: #859900}
-.token.property {color: #bb8900}
-.token.punctuation {color: #ffff00}
-.token.function {color: #2aa198}
-.token.comment {color: #b1b1b1}
+.token.selector { color: #859900; }
+.token.property { color: #bb8900; }
+.token.punctuation { color: #ffff00; }
+.token.function { color: #2aa198; }
+.token.comment { color: #b1b1b1; }
 
 /* 重点来咯，现在开始教你画大心心 */
 
